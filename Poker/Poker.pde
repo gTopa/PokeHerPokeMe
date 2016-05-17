@@ -6,16 +6,13 @@ public ArrayList<Card> discards;
 
 void setup() {
   size(480, 480);
+  deck=new ArrayList<Card>(52);
   populateDeck();
-  System.out.println(Arrays.toString(deck.toArray()));
   shuffle();
   hand1=new ArrayList<Card>(5);
   hand2=new ArrayList<Card>(5);
+  deal();
 }
-
-void draw() {
-  
-}  
 
 public void shuffle(){
   for (int i=0;i<1000;i++){
@@ -26,7 +23,7 @@ public void shuffle(){
 public void swap(int i, int j){
   Card temp=deck.get(i);
   deck.set(i,deck.get(j));
-  deck[j]=temp;
+  deck.set(j,temp);
 }
 
 public void populateDeck(){
@@ -35,4 +32,11 @@ public void populateDeck(){
       deck.add(new Card(i,j));
     }
   }
+}
+
+public void deal(){
+ for (int i=0;i<5;i++){
+   hand1.add(deck.remove(deck.size()-1));
+   hand2.add(deck.remove(deck.size()-1));
+ }
 }
