@@ -21,6 +21,8 @@ void setup() {
 void draw(){
   if (mode.equals("AskForCards")){
     displayCards();
+    selectCards();
+    exchangeCards();
   }
 }
 
@@ -59,6 +61,33 @@ public void displayCards(){
   for(Hand h:players){
     for (int i=0;i<5;i++){
       h.getCard(i).display();
+    }
+  }
+}
+
+public void selectCards(){
+  select(mouseX, mouseY);
+}
+
+public void select(float x, float y){
+  for(int i=0;i<players.size();i++){
+    for(int k=0;k<5;k++){
+      if (dist(x,y,players.get(i).getCard(k).getX(),players.get(i).getCard(k).getY())<65){
+        players.get(i).getCard(k).setState("swap");
+      }
+    }
+  }
+}
+
+public void exchangeCards(){
+  for(int i=0;i<players.size();i++){
+    for(int k=0;k<5;k++){
+      if (players.get(i).getCard(k).getState().equals("swap")){
+        Card temp=players.get(i).getCard(k);
+        Card newC=deck.remove(0);
+        players.get(i).removeCard(k);
+        players.get(i).addCard(newC, temp.getX(), temp.getY());
+      }
     }
   }
 }

@@ -2,6 +2,7 @@ public class Card implements Displayable{
    private int[] type;
    private float x;
    private float y;
+   private String state;
    
    public Card(int num, int suit){
      type=new int[2];
@@ -52,4 +53,13 @@ public class Card implements Displayable{
      fill(255);
      text(toString(),x,y);
    }
+   
+   public void setState(String state){
+     this.state=state;
+   }
+   
+   public String getState(){
+     return state;
+   }
+   
 }
