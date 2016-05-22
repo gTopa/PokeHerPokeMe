@@ -8,6 +8,7 @@ public class Card implements Displayable{
      type=new int[2];
      type[0]=num;
      type[1]=suit;
+     state="";
    }
    
    public Card(int num, int suit, float x, float y){
@@ -16,6 +17,7 @@ public class Card implements Displayable{
      type[1]=suit;
      this.x=x;
      this.y=y;
+     state="";
    }
    
    public int getNum(){

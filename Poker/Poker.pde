@@ -3,6 +3,8 @@ public ArrayList<Card> deck;
 public ArrayList<Hand> players;
 public ArrayList<Card> discards;
 public String mode;
+public String lastKey="";
+public boolean keyUsed;
 
 void setup() {
   size(480, 480);
@@ -19,10 +21,14 @@ void setup() {
 }
 
 void draw(){
-  if (mode.equals("AskForCards")){
-    displayCards();
-    selectCards();
+  fill(255);
+  displayCards();
+  if(lastKey.equals("S")){
+    mode="SwapCards";
+  }
+  if (mode.equals("SwapCards")){
     exchangeCards();
+    mode="Done";
   }
 }
 
@@ -65,7 +71,7 @@ public void displayCards(){
   }
 }
 
-public void selectCards(){
+public void mouseClicked(){
   select(mouseX, mouseY);
 }
 
@@ -89,5 +95,14 @@ public void exchangeCards(){
         players.get(i).addCard(newC, temp.getX(), temp.getY());
       }
     }
+  }
+}
+
+public void keyPressed() {
+  print(keyCode+",");
+  keyUsed = true;
+  //WASD
+  if (keyCode == 83) { //S
+    lastKey = "S";
   }
 }
