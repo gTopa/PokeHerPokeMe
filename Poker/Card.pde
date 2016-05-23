@@ -2,13 +2,13 @@ public class Card implements Displayable{
    private int[] type;
    private float x;
    private float y;
-   private String state;
+   private boolean state;
    
    public Card(int num, int suit){
      type=new int[2];
      type[0]=num;
      type[1]=suit;
-     state="";
+     state=false;
    }
    
    public Card(int num, int suit, float x, float y){
@@ -17,7 +17,7 @@ public class Card implements Displayable{
      type[1]=suit;
      this.x=x;
      this.y=y;
-     state="";
+     state=false;
    }
    
    public int getNum(){
@@ -56,11 +56,11 @@ public class Card implements Displayable{
      text(toString(),x,y);
    }
    
-   public void setState(String state){
+   public void setState(boolean state){
      this.state=state;
    }
    
-   public String getState(){
+   public boolean getState(){
      return state;
    }
    

@@ -1,4 +1,5 @@
 import java.util.*;
+
 public ArrayList<Card> deck;
 public ArrayList<Hand> players;
 public ArrayList<Card> discards;
@@ -45,7 +46,7 @@ public void swap(int i, int j) {
 }
 
 public void populateDeck() {
-  for (int i=0; i<13; i++) {
+  for (int i=1; i<14; i++) {
     for (int j=0; j<4; j++) {
       deck.add(new Card(i, j));
     }
@@ -79,7 +80,7 @@ public void select(float x, float y){
   for(int i=0;i<players.size();i++){
     for(int k=0;k<5;k++){
       if (dist(x,y,players.get(i).getCard(k).getX(),players.get(i).getCard(k).getY())<65){
-        players.get(i).getCard(k).setState("swap");
+        players.get(i).getCard(k).setState(!players.get(i).getCard(k).getState());
       }
     }
   }
@@ -88,7 +89,7 @@ public void select(float x, float y){
 public void exchangeCards(){
   for(int i=0;i<players.size();i++){
     for(int k=0;k<5;k++){
-      if (players.get(i).getCard(k).getState().equals("swap")){
+      if (players.get(i).getCard(k).getState()){
         Card temp=players.get(i).getCard(k);
         Card newC=deck.remove(0);
         players.get(i).removeCard(k);
