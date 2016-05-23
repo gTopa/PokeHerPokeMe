@@ -5,6 +5,7 @@ public ArrayList<Hand> players;
 public String mode;
 public String lastKey="";
 public boolean keyUsed;
+public int turn;
 
 void setup() {
   size(480, 480);
@@ -18,6 +19,7 @@ void setup() {
   }
   mode="AskForCards";
   System.out.println(players.size());
+  turn=1;
 }
 
 void draw(){
@@ -25,10 +27,11 @@ void draw(){
   displayCards();
   if(lastKey.equals("S")){
     mode="SwapCards";
+    lastKey="";
   }
   if (mode.equals("SwapCards")){
     exchangeCards();
-    mode="Done";
+    mode="AskForCards";
   }
 }
 
@@ -111,3 +114,8 @@ public void keyPressed() {
 public void sortHand(){
   for(int i=0;i<players.size();i++){
     for(int k=0;k<5;k++){
+      
+    }
+    
+  }
+}
