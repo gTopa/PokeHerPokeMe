@@ -30,4 +30,8 @@ public class Hand{
     }
     return str;
   }
+  
+  public void howCards(){
+    
+  }
 }

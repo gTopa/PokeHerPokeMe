@@ -1,4 +1,4 @@
-public class Card implements Displayable{
+public class Card implements Displayable, Comparable<Card>{
    private int[] type;
    private float x;
    private float y;
@@ -64,4 +64,13 @@ public class Card implements Displayable{
      return state;
    }
    
+   public int compareTo(Card temp){
+     if (type[0]*10+type[1]>temp.getNum()*10+temp.getSuit()){
+       return 1;
+     }else if(type[0]*10+type[1]<temp.getNum()*10+temp.getSuit()){
+       return -1;
+     }else{
+       return 0;
+     }
+   }
 }

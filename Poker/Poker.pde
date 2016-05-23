@@ -107,3 +107,7 @@ public void keyPressed() {
     lastKey = "S";
   }
 }
+
+public void sortHand(){
+  for(int i=0;i<players.size();i++){
+    for(int k=0;k<5;k++){
