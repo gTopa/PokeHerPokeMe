@@ -2,7 +2,6 @@ import java.util.*;
 
 public ArrayList<Card> deck;
 public ArrayList<Hand> players;
-public ArrayList<Card> discards;
 public String mode;
 public String lastKey="";
 public boolean keyUsed;
@@ -79,7 +78,8 @@ public void mouseClicked(){
 public void select(float x, float y){
   for(int i=0;i<players.size();i++){
     for(int k=0;k<5;k++){
-      if (dist(x,y,players.get(i).getCard(k).getX(),players.get(i).getCard(k).getY())<65){
+      Card temp=players.get(i).getCard(k);
+      if (x<=temp.getX()+30&&x>=temp.getX()-30&&y<=temp.getY()+50&&y>=temp.getY()-50){
         players.get(i).getCard(k).setState(!players.get(i).getCard(k).getState());
       }
     }
