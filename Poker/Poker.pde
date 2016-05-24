@@ -31,7 +31,13 @@ void draw(){
   }
   if (mode.equals("SwapCards")){
     exchangeCards();
-    mode="AskForCards";
+    mode="Count";
+  }
+  if (mode.equals("Count")){
+    int[] scores=new int[players.size()];
+    for(int i=0;i<players.size();i++){
+      scores[i]=players.get(i).howCards();
+    }
   }
 }
 
@@ -97,6 +103,7 @@ public void exchangeCards(){
         Card newC=deck.remove(0);
         players.get(i).removeCard(k);
         players.get(i).addCard(newC, temp.getX(), temp.getY());
+        k--;
       }
     }
   }

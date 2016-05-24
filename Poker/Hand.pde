@@ -31,7 +31,19 @@ public class Hand{
     return str;
   }
   
-  public void howCards(){
-    
+  public int howCards(){
+    int score=0;
+    hand=sort();
+    return score;
+  }
+  
+  public ArrayList<Card> sort(){
+    Card[] temp=(Card[])hand.toArray();
+    Arrays.sort(temp);
+    ArrayList<Card> t=new ArrayList<Card>();
+    for (int i=0;i<5;i++){
+      t.add(temp[i]);
+    }
+    return t;
   }
 }

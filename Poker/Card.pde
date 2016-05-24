@@ -52,7 +52,11 @@ public class Card implements Displayable, Comparable<Card>{
    }
    
    public void display(){
-     fill(0);
+     if (state){
+       fill(255,200,200);
+     }else{
+       fill(0);
+     }
      rectMode(CENTER);
      rect(x,y,60,100);
      if (faceUp){
