@@ -34,16 +34,89 @@ public class Hand{
   public int howCards(){
     int score=0;
     hand=sort();
+    if(isStraight()){
+      score+=3000;
+    }else if(isFlush()){
+      score+=4000;
+    }else if(isStraight()&&isFlush()){
+      score+=7000;
+    }else if(isFull()){
+      score+=5000;
+    }else if(isPoker()){
+      score+=6000;
+    }else if(isThree()){
+      score+=3000;
+    }else if(isTwoPair()){
+      score+=2000;
+    }else if(isPair()){
+      score+=1000;
+    }
     return score;
   }
   
   public ArrayList<Card> sort(){
-    Card[] temp=(Card[])hand.toArray();
+    Card[] temp=new Card[5];
+    for (int i=0;i<hand.size();i++){
+      temp[i]=hand.get(0);
+    }
     Arrays.sort(temp);
     ArrayList<Card> t=new ArrayList<Card>();
     for (int i=0;i<5;i++){
       t.add(temp[i]);
     }
     return t;
+  }
+  
+  public boolean isStraight(){
+    for (int i=1;i<5;i++){
+      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(hand.get(i).getNum()==1&&hand.get(i-1).getNum()==13))){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public boolean isFlush(){
+    int suit=hand.get(0).getSuit();
+    for(int i=1;i<5;i++){
+      if(!(hand.get(i).getSuit()==suit)){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public boolean isPoker(){
+    boolean diff=false;
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
+        if(diff){
+          return false;
+        }
+      }else{
+        diff=true;
+      }
+    }
+    return true;
+  }
+  
+  public boolean isThree(){
+    int numDiff=0;
+    for(int i=1;i<5;i++){
+      if(hand.get(i).getNum()!=hand.get(i).getNum()){
+        numDiff+=1;
+      }
+    }
+    return !(numDiff>3);
+  }
+  
+  public boolean isPair(){
+    int numDiff=0;
+    for(int i=1;i<5;i++){
+      if(hand.get(i).getNum()!=hand.get(i).getNum()){
+        numDiff+=1;
+      }
+    }
+    return !(numDiff>4);
   }
 }

@@ -14,12 +14,8 @@ void setup() {
   shuffle();
   players=new ArrayList<Hand>();
   deal();
-  for(Hand h:players){
-    System.out.println(h);
-  }
   mode="AskForCards";
-  System.out.println(players.size());
-  turn=1;
+  sortHand();
 }
 
 void draw(){
@@ -120,9 +116,6 @@ public void keyPressed() {
 
 public void sortHand(){
   for(int i=0;i<players.size();i++){
-    for(int k=0;k<5;k++){
-      
-    }
-    
-  }
+    players.get(i).sort();
+  }    
 }
