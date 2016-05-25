@@ -6,6 +6,7 @@ public String mode;
 public String lastKey="";
 public boolean keyUsed;
 public int turn;
+public int[] scores;
 
 void setup() {
   size(480, 480);
@@ -16,6 +17,7 @@ void setup() {
   deal();
   mode="AskForCards";
   sortHand();
+  scores=new int[players.size()];
 }
 
 void draw(){
@@ -28,12 +30,12 @@ void draw(){
   if (mode.equals("SwapCards")){
     exchangeCards();
     mode="Count";
-  }
-  if (mode.equals("Count")){
-    int[] scores=new int[players.size()];
+  }else if (mode.equals("Count")){
     for(int i=0;i<players.size();i++){
       scores[i]=players.get(i).howCards();
     }
+    System.out.println(Arrays.toString(scores));
+    mode="End";
   }
 }
 

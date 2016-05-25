@@ -77,9 +77,8 @@ public class Hand{
   }
   
   public boolean isFlush(){
-    int suit=hand.get(0).getSuit();
     for(int i=1;i<5;i++){
-      if(!(hand.get(i).getSuit()==suit)){
+      if(hand.get(i-1).getSuit()!=hand.get(i).getSuit()){
         return false;
       }
     }
@@ -112,7 +111,7 @@ public class Hand{
   
   public boolean isPair(){
     for(int i=1;i<5;i++){
-      if(hand.get(i-).getNum()==hand.get(i).getNum()){
+      if(hand.get(i-1).getNum()==hand.get(i).getNum()){
         return true;
       }
     }
@@ -136,10 +135,10 @@ public class Hand{
   public boolean isFull(){
     int numDiff=0;
     for(int i=1;i<5;i++){
-      if(hand.get(i).getNum()!=hand.get(i).getNum()){
-        numDiff+=1;
+      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
+        numDiff++;
       }
     }
-    return !(numDiff>1);
+    return (numDiff<=1);
   }
 }
