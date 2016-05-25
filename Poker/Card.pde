@@ -3,12 +3,14 @@ public class Card implements Displayable, Comparable<Card>{
    private float x;
    private float y;
    private boolean state;
+   private boolean faceUp;
    
    public Card(int num, int suit){
      type=new int[2];
      type[0]=num;
      type[1]=suit;
      state=false;
+     faceUp=true;
    }
    
    public Card(int num, int suit, float x, float y){
@@ -17,7 +19,8 @@ public class Card implements Displayable, Comparable<Card>{
      type[1]=suit;
      this.x=x;
      this.y=y;
-     state=false;
+     state=true;
+     faceUp=false;
    }
    
    public int getNum(){
@@ -49,11 +52,17 @@ public class Card implements Displayable, Comparable<Card>{
    }
    
    public void display(){
-     fill(0);
+     if (state){
+       fill(255,200,200);
+     }else{
+       fill(0);
+     }
      rectMode(CENTER);
      rect(x,y,60,100);
-     fill(255);
-     text(toString(),x,y);
+     if (faceUp){
+       fill(255);
+       text(toString(),x,y);
+     }
    }
    
    public void setState(boolean state){
@@ -62,6 +71,14 @@ public class Card implements Displayable, Comparable<Card>{
    
    public boolean getState(){
      return state;
+   }
+   
+   public void setSide(){
+     faceUp=!faceUp;
+   }
+   
+   public boolean getSide(){
+     return faceUp;
    }
    
    public int compareTo(Card temp){

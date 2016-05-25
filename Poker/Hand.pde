@@ -31,7 +31,120 @@ public class Hand{
     return str;
   }
   
-  public void howCards(){
-    
+  public int howCards(){
+    int score=0;
+    hand=sort();
+    for (int i=0;i<5;i++){
+      System.out.println(hand.get(i).getNum());
+    }
+    System.out.println();
+    if(isStraight()){
+      score+=4000;
+    }else if(isFlush()){
+      score+=5000;
+    }else if(isStraight()&&isFlush()){
+      score+=8000;
+    }else if(isFull()){
+      score+=6000;
+    }else if(isPoker()){
+      score+=7000;
+    }else if(isTwoPair()){
+      score+=2000;
+    }else if(isThree()){
+      score+=3000;
+    }else if(isPair()){
+      score+=1000;
+    }
+    return score;
+  }
+  
+  public ArrayList<Card> sort(){
+    Card[] temp=new Card[5];
+    for (int i=0;i<hand.size();i++){
+      temp[i]=hand.get(i);
+    }
+    Arrays.sort(temp);
+    ArrayList<Card> t=new ArrayList<Card>();
+    for (int i=0;i<5;i++){
+      t.add(temp[i]);
+    }
+    return t;
+  }
+  
+  public boolean isStraight(){
+    for (int i=1;i<5;i++){
+      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(hand.get(i).getNum()==1&&hand.get(i-1).getNum()==13))){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public boolean isFlush(){
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getSuit()!=hand.get(i).getSuit()){
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public boolean isPoker(){
+    boolean diff=false;
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
+        if(diff){
+          return false;
+        }else{
+        diff=true;
+        }
+      }
+    }
+    return true;
+  }
+  
+  public boolean isThree(){
+    int numDiff=0;
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
+        numDiff+=1;
+      }
+    }
+    return !(numDiff>2);
+  }
+  
+  public boolean isPair(){
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getNum()==hand.get(i).getNum()){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isTwoPair(){
+    boolean onePair=false;
+    int pairNum=0;
+    for(int i=1;i<5;i++){
+      if (hand.get(i-1).getNum()==hand.get(i).getNum()){
+        if (onePair&&hand.get(i).getNum()!=pairNum){
+          return true;
+        }else{
+          onePair=true;
+          pairNum=hand.get(i).getNum();
+        }
+      }
+    }
+    return false;
+  }
+  
+  public boolean isFull(){
+    int numDiff=0;
+    for(int i=1;i<5;i++){
+      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
+        numDiff++;
+      }
+    }
+    return (numDiff==1);
   }
 }
