@@ -111,12 +111,35 @@ public class Hand{
   }
   
   public boolean isPair(){
+    for(int i=1;i<5;i++){
+      if(hand.get(i-).getNum()==hand.get(i).getNum()){
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  public boolean isTwoPair(){
+    boolean onePair=false;
+    for(int i=1;i<5;i++){
+      if (hand.get(i-1).getNum()==hand.get(i).getNum()){
+        if (onePair){
+          return true;
+        }else{
+          onePair=true;
+        }
+      }
+    }
+    return false;
+  }
+  
+  public boolean isFull(){
     int numDiff=0;
     for(int i=1;i<5;i++){
       if(hand.get(i).getNum()!=hand.get(i).getNum()){
         numDiff+=1;
       }
     }
-    return !(numDiff>4);
+    return !(numDiff>1);
   }
 }
