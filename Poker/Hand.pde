@@ -44,10 +44,10 @@ public class Hand{
       score+=5000;
     }else if(isStraight()&&isFlush()){
       score+=8000;
-    }else if(isFull()){
-      score+=6000;
     }else if(isPoker()){
       score+=7000;
+    }else if(isFull()){
+      score+=6000;
     }else if(isTwoPair()){
       score+=2000;
     }else if(isThree()){
@@ -90,7 +90,7 @@ public class Hand{
   }
   
   public boolean isPoker(){
-    boolean diff=false;
+    /*boolean diff=false;
     for(int i=1;i<5;i++){
       if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
         if(diff){
@@ -101,6 +101,8 @@ public class Hand{
       }
     }
     return true;
+    */
+    return(hand.get(0).getNum()==hand.get(3).getNum()||hand.get(1).getNum()==hand.get(4).getNum());
   }
   
   public boolean isThree(){
@@ -165,5 +167,6 @@ public class Hand{
         val=i;
       }
     }
+    return val*10;
   }
 }
