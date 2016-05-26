@@ -39,21 +39,30 @@ public class Hand{
     }
     System.out.println();
     if(isStraight()){
-      score+=4000;
+      score+=40000;
+      score+=findMax();
     }else if(isFlush()){
-      score+=5000;
+      score+=50000;
+      score+=findMax();
     }else if(isStraight()&&isFlush()){
-      score+=8000;
+      score+=80000;
+      score+=findMax();
     }else if(isPoker()){
-      score+=7000;
+      score+=70000;
+      score+=findMost();
     }else if(isFull()){
-      score+=6000;
+      score+=60000;
+      score+=findMost();
     }else if(isTwoPair()){
-      score+=2000;
+      score+=20000;
+      score+=findMost();
     }else if(isThree()){
-      score+=3000;
+      score+=30000;
+      score+=findMost();
     }else if(isPair()){
-      score+=1000;
+      score+=10000;
+      score+=findMost();
+      score+=findMax();
     }
     return score;
   }
@@ -73,7 +82,7 @@ public class Hand{
   
   public boolean isStraight(){
     for (int i=1;i<5;i++){
-      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(hand.get(i).getNum()==1&&hand.get(i-1).getNum()==13))){
+      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(i-1==0&&hand.get(i-1).getNum()==1&&hand.get(4).getNum()==13))){
         return false;
       }
     }
@@ -155,18 +164,18 @@ public class Hand{
   }
   
   public int findMost(){
-    int[] num=new int[13];
+    int[] num=new int[14];
     for(Card c:hand){
       num[c.getNum()]+=1;
     }
     int max=0;
     int val=0;
     for (int i=0;i<14;i++){
-      if (num[i]>max){
+      if (num[i]>=max){
         max=num[i];
         val=i;
       }
     }
-    return val*10;
+    return val*100;
   }
 }
