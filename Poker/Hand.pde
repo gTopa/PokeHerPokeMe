@@ -147,4 +147,23 @@ public class Hand{
     }
     return (numDiff==1);
   }
+  
+  public int findMax(){
+    return hand.get(4).getNum()*10+hand.get(4).getSuit();
+  }
+  
+  public int findMost(){
+    int[] num=new int[13];
+    for(Card c:hand){
+      num[c.getNum()]+=1;
+    }
+    int max=0;
+    int val=0;
+    for (int i=0;i<14;i++){
+      if (num[i]>max){
+        max=num[i];
+        val=i;
+      }
+    }
+  }
 }

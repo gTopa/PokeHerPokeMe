@@ -35,6 +35,15 @@ void draw(){
       scores[i]=players.get(i).howCards();
     }
     System.out.println(Arrays.toString(scores));
+    int winner=0;
+    int max=0;
+    for(int i=0;i<players.size();i++){
+      if (scores[i]>max){
+        max=scores[i];
+        winner=i;
+      }
+    }
+    text("Player "+winner+" wins!", 230,240);
     mode="End";
   }
 }
