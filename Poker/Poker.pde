@@ -29,25 +29,34 @@ void draw(){
   }
   if (mode.equals("SwapCards")){
     exchangeCards();
-    mode="Count";
-  }else if (mode.equals("Count")){
-    for(int i=0;i<players.size();i++){
-      scores[i]=players.get(i).howCards();
-    }
-    System.out.println(Arrays.toString(scores));
-    int winner=0;
-    int max=0;
-    for(int i=0;i<players.size();i++){
-      if (scores[i]>max){
-        max=scores[i];
-        winner=i;
-      }
-    }
-    text("Player "+winner+" wins!", 230,240);
+    mode="Score";
+  }else if (mode.equals("Score")){
+    score();
     mode="End";
+  }else if (mode.equals("End")){
+    end();
   }
 }
+    
+public void score(){
+  for(int i=0;i<players.size();i++){
+    scores[i]=players.get(i).howCards();
+  }
+  System.out.println(Arrays.toString(scores));
+  mode="End"; 
+}
 
+public void end(){
+  int winner=0;
+  int max=0;
+  for(int i=0;i<players.size();i++){
+    if (scores[i]>max){
+      max=scores[i];
+      winner=i;
+    }
+  }
+  text("Player "+winner+" wins!", 230,240);
+}
 public void shuffle() {
   for (int i=0; i<1000; i++) {
     swap((int)(Math.random()*52), (int)(Math.random()*52));

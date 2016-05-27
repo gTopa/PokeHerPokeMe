@@ -101,18 +101,6 @@ public class Hand{
   }
   
   public boolean isPoker(){
-    /*boolean diff=false;
-    for(int i=1;i<5;i++){
-      if(hand.get(i-1).getNum()!=hand.get(i).getNum()){
-        if(diff){
-          return false;
-        }else{
-        diff=true;
-        }
-      }
-    }
-    return true;
-    */
     return(hand.get(0).getNum()==hand.get(3).getNum()||hand.get(1).getNum()==hand.get(4).getNum());
   }
   
