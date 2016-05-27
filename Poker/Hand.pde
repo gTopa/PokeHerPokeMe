@@ -63,6 +63,8 @@ public class Hand{
       score+=10000;
       score+=findMost();
       score+=findMax();
+    }else{
+      score+=findMax();
     }
     return score;
   }
@@ -82,7 +84,7 @@ public class Hand{
   
   public boolean isStraight(){
     for (int i=1;i<5;i++){
-      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(i-1==0&&hand.get(i-1).getNum()==1&&hand.get(4).getNum()==13))){
+      if (!(hand.get(i-1).getNum()+1==hand.get(i).getNum()||(i==4&&hand.get(i).getNum()==13&&hand.get(0).getNum()==1))){
         return false;
       }
     }
