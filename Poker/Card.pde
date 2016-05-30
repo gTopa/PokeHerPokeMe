@@ -4,6 +4,7 @@ public class Card implements Displayable, Comparable<Card>{
    private float y;
    private boolean state;
    private boolean faceUp;
+   private PImage img;
    
    public Card(int num, int suit){
      type=new int[2];
@@ -11,6 +12,8 @@ public class Card implements Displayable, Comparable<Card>{
      type[1]=suit;
      state=false;
      faceUp=true;
+     img=loadImage((type[0]-2)+"."+type[1]+".png");
+     img.resize(60,100);
    }
    
    public Card(int num, int suit, float x, float y){
@@ -21,6 +24,8 @@ public class Card implements Displayable, Comparable<Card>{
      this.y=y;
      state=true;
      faceUp=false;
+     img=loadImage((type[0]-2)+"."+type[1]+".png");
+     img.resize(60,100);
    }
    
    public int getNum(){
@@ -52,17 +57,18 @@ public class Card implements Displayable, Comparable<Card>{
    }
    
    public void display(){
+     float tempX=x;
+     float tempY=y;
      if (state){
-       fill(255,200,200);
-     }else{
-       fill(0);
+       tempY+=10;
      }
-     rectMode(CENTER);
+     /*rectMode(CENTER);
      rect(x,y,60,100);
      if (faceUp){
        fill(255);
        text(toString(),x,y);
-     }
+     }*/
+     image(img,tempX,tempY);
    }
    
    public void setState(boolean state){

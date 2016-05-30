@@ -38,14 +38,14 @@ public class Hand{
       System.out.println(hand.get(i).getNum());
     }
     System.out.println();
-    if(isStraight()){
+    if(isStraight()&&isFlush()){
+      score+=80000;
+      score+=findMax();
+    }else if(isStraight()){
       score+=40000;
       score+=findMax();
     }else if(isFlush()){
       score+=50000;
-      score+=findMax();
-    }else if(isStraight()&&isFlush()){
-      score+=80000;
       score+=findMax();
     }else if(isPoker()){
       score+=70000;

@@ -21,7 +21,7 @@ void setup() {
 }
 
 void draw(){
-  fill(255);
+  background(255);
   displayCards();
   if(lastKey.equals("S")){
     mode="SwapCards";
@@ -83,7 +83,7 @@ public void deal() {
   }
   for(int i=0;i<5;i++){
     for(int j=0;j<2;j++){
-      players.get(j).addCard(deck.remove(0), 70 * i + 100, pow(4,j)*100);
+      players.get(j).addCard(deck.remove(0), 70 * i + 75, pow(3,j)*100);
     }
   }
 }
@@ -104,7 +104,7 @@ public void select(float x, float y){
   for(int i=0;i<players.size();i++){
     for(int k=0;k<5;k++){
       Card temp=players.get(i).getCard(k);
-      if (x<=temp.getX()+30&&x>=temp.getX()-30&&y<=temp.getY()+50&&y>=temp.getY()-50){
+      if (x<=temp.getX()+60&&x>=temp.getX()&&y<=temp.getY()+100&&y>=temp.getY()){
         players.get(i).getCard(k).setState(!players.get(i).getCard(k).getState());
       }
     }
