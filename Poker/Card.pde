@@ -12,7 +12,7 @@ public class Card implements Displayable, Comparable<Card>{
      type[1]=suit;
      state=false;
      faceUp=true;
-     img=loadImage((type[0]-2)+"."+type[1]+".png");
+     img=loadImage((type[0]-1)+"."+type[1]+".png");
      img.resize(60,100);
    }
    
@@ -69,6 +69,8 @@ public class Card implements Displayable, Comparable<Card>{
        text(toString(),x,y);
      }*/
      image(img,tempX,tempY);
+     fill(0);
+     text(toString(),x,y-10);
    }
    
    public void setState(boolean state){
