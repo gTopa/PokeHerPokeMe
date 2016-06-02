@@ -20,7 +20,7 @@ void setup() {
   mode="AskForCards";
   sortHand();
   scores=new int[players.size()];
-  check=false;
+  check=true;
 }
 
 void draw(){
@@ -34,6 +34,7 @@ void draw(){
     exchangeCards();
     mode="Bet";
   }else if(mode.equals("Bet")){
+    betting();
     if(check){
       mode="Score";
     }
@@ -147,13 +148,15 @@ public void sortHand(){
   }    
 }
 
-public void betting{
+public void betting(){
   for(Hand h:players){
     h.bet();
   }
   for(int i=1;i<players.size();i++){
     if(players.get(i-1).getBet()!=players.get(i).getBet()){
-      check=true;
+      print(players.get(i-1).getBet());
+      print(players.get(i).getBet());
+      check=false;
     }
   }
 }
