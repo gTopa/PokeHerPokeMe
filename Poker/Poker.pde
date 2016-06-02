@@ -8,6 +8,7 @@ public boolean keyUsed;
 public int turn;
 public int[] scores;
 public int[] bets;
+public boolean check;
 
 void setup() {
   size(480, 480);
@@ -19,6 +20,7 @@ void setup() {
   mode="AskForCards";
   sortHand();
   scores=new int[players.size()];
+  check=false;
 }
 
 void draw(){
@@ -32,15 +34,6 @@ void draw(){
     exchangeCards();
     mode="Bet";
   }else if(mode.equals("Bet")){
-    for(Hand h:players){
-      h.bet();
-    }
-    boolean check=false;
-    for(int i=1;i<players.size();i++){
-      if(players.get(i-1).getBet()!=players.get(i).getBet()){
-        check=true;
-      }
-    }
     if(check){
       mode="Score";
     }
@@ -152,4 +145,15 @@ public void sortHand(){
   for(int i=0;i<players.size();i++){
     players.get(i).sort();
   }    
+}
+
+public void betting{
+  for(Hand h:players){
+    h.bet();
+  }
+  for(int i=1;i<players.size();i++){
+    if(players.get(i-1).getBet()!=players.get(i).getBet()){
+      check=true;
+    }
+  }
 }
