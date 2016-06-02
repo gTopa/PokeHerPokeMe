@@ -69,8 +69,6 @@ public class Card implements Displayable, Comparable<Card>{
        text(toString(),x,y);
      }*/
      image(img,tempX,tempY);
-     fill(0);
-     text(toString(),x,y-10);
    }
    
    public void setState(boolean state){

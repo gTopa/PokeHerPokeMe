@@ -1,12 +1,12 @@
 public class Hand{
-  public ArrayList<Card> hand;
+  private ArrayList<Card> hand;
+  private int bet;
+  private int money;
   
   public Hand(){
     hand=new ArrayList<Card>();
-  }
-  
-  public Hand(ArrayList<Card> cards){
-    hand=cards;
+    bet=0;
+    money=1000;
   }
   
   public void addCard(Card newCard, float x, float y){
@@ -34,10 +34,6 @@ public class Hand{
   public int howCards(){
     int score=0;
     hand=sort();
-    for (int i=0;i<5;i++){
-      System.out.println(hand.get(i).getNum());
-    }
-    System.out.println();
     if(isStraight()&&isFlush()){
       score+=80000;
       score+=findMax();
@@ -167,5 +163,13 @@ public class Hand{
       }
     }
     return val*100;
+  }
+  
+  public void bet(){
+   bet=10;
+  }
+  
+  public int getBet(){
+    return bet;
   }
 }

@@ -7,6 +7,7 @@ public String lastKey="";
 public boolean keyUsed;
 public int turn;
 public int[] scores;
+public int[] bets;
 
 void setup() {
   size(480, 480);
@@ -29,7 +30,20 @@ void draw(){
   }
   if (mode.equals("SwapCards")){
     exchangeCards();
-    mode="Score";
+    mode="Bet";
+  }else if(mode.equals("Bet")){
+    for(Hand h:players){
+      h.bet();
+    }
+    boolean check=false;
+    for(int i=1;i<players.size();i++){
+      if(players.get(i-1).getBet()!=players.get(i).getBet()){
+        check=true;
+      }
+    }
+    if(check){
+      mode="Score";
+    }
   }else if (mode.equals("Score")){
     score();
     mode="End";
@@ -55,6 +69,7 @@ public void end(){
       winner=i;
     }
   }
+  fill(0);
   text("Player "+winner+" wins!", 230,240);
 }
 public void shuffle() {
@@ -126,7 +141,6 @@ public void exchangeCards(){
 }
 
 public void keyPressed() {
-  print(keyCode+",");
   keyUsed = true;
   //WASD
   if (keyCode == 83) { //S
