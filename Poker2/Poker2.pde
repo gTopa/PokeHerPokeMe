@@ -12,9 +12,12 @@ public int turn;
 public int[] scores;
 public int[] bets;
 public boolean check;
-public boolean fold;
-public JFrame frame;
+public boolean[] fold;
 public boolean call;
+public JPanel bettingWindow;
+public JFrame frame;
+public JButton b1,b2,b3;
+public JTextField f1;
 
 void setup() {
   size(480, 480);
@@ -26,7 +29,10 @@ void setup() {
   mode="AskForCards";
   sortHand();
   scores=new int[players.size()];
+  call=true;
   check=true;
+  bets=new int[players.size()];
+  fold=new boolean[players.size()];
 }
 
 void draw(){
@@ -157,14 +163,6 @@ public void sortHand(){
 }
 
 public void betting(){
-  for(int i=0;i<players.size();i++){
-    frame=new JFrame("BettingWindow");
-    if (check){
-      //make check button
-    }
-    //make call button
-    //make bet button
-  }
   for(int i=1;i<players.size();i++){
     if(bets[i-1]!=bets[i]){
       call=false;
