@@ -7,8 +7,6 @@ public String lastKey="";
 public boolean keyUsed;
 public int turn;
 public int[] scores;
-public int[] bets;
-public boolean check;
 
 void setup() {
   size(480, 480);
@@ -20,7 +18,6 @@ void setup() {
   mode="AskForCards";
   sortHand();
   scores=new int[players.size()];
-  check=true;
 }
 
 void draw(){
@@ -32,12 +29,7 @@ void draw(){
   }
   if (mode.equals("SwapCards")){
     exchangeCards();
-    mode="Bet";
-  }else if(mode.equals("Bet")){
-    betting();
-    if(check){
-      mode="Score";
-    }
+    mode="Score";
   }else if (mode.equals("Score")){
     score();
     mode="End";
@@ -146,17 +138,4 @@ public void sortHand(){
   for(int i=0;i<players.size();i++){
     players.get(i).sort();
   }    
-}
-
-public void betting(){
-  for(Hand h:players){
-    h.bet();
-  }
-  for(int i=1;i<players.size();i++){
-    if(players.get(i-1).getBet()!=players.get(i).getBet()){
-      print(players.get(i-1).getBet());
-      print(players.get(i).getBet());
-      check=false;
-    }
-  }
 }
